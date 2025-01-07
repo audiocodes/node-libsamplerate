@@ -1,5 +1,5 @@
 {
-    "name": "node-libsamplerate",
+    "name": "@audc/libsamplerate",
     "version": "1.0.0",
     "description": "Native bindings for libsamplerate",
     "main": "index.js",
@@ -39,11 +39,11 @@
     "engines": {
         "node": ">=8.0.0"
     },
-    "repository": "github:dmooney65/node-libsamplerate",
+    "repository": "github:audiocodes/node-libsamplerate",
     "bugs": {
-        "url": "https://github.com/dmooney65/node-libsamplerate/issues"
+        "url": "https://github.com/audiocodes/node-libsamplerate/issues"
     },
-    "homepage": "https://github.com/dmooney65/node-libsamplerate#readme",
+    "homepage": "https://github.com/audiocodes/node-libsamplerate#readme",
     "devDependencies": {
         "audio-generator": "^2.1.2",
         "mocha": "^5.2.0",

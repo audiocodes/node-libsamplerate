@@ -10,7 +10,7 @@ This module uses the "Full Api" detailed [here](http://www.mega-nerd.com/libsamp
 ## Install
 
 ```shell
-npm install node-libsamplerate --save
+npm install @audc/libsamplerate --save
 ```
 
 Requires `cmake` and a valid toolchain to build.
@@ -20,7 +20,7 @@ For Windows, install the Visual C++ build tools and download cmake from [cmake.o
 ## Usage
 
 Include module;
-`const SampleRate = require('node-libsamplerate');`
+`const SampleRate = require('@audc/libsamplerate');`
 
 Instantiate:
 `const resample = new SampleRate(options);`
