@@ -1,5 +1,5 @@
 
-const SampleRate = require('./index.js');
+const SampleRate = require('../index.js');
 const fs = require('fs');
 const header = require('./waveheader.js');
 
