@@ -1,11 +1,9 @@
 #include <thread>
 #include <iostream>
-#include "../deps/include/samplerate.h"
-#include "../deps/include/config.h"
-
 #include <math.h>
+#include <samplerate.h>
 
-#include "./node-libsamplerate.h"
+#include "node-libsamplerate.h"
 
 void s24_to_float_array(const int *in, float *out, int len)
 {
@@ -14,8 +12,6 @@ void s24_to_float_array(const int *in, float *out, int len)
         len--;
         out[len] = (float)(in[len] / (8.0 * 0x200000));
     };
-
-    return;
 }
 
 void float_to_s24_array(const float *in, int *out, int len)
@@ -193,4 +189,3 @@ void SampleRateStream::Reset(const Napi::CallbackInfo &info)
         throw Napi::Error::New(info.Env(), src_strerror(error));
     };
 }
-

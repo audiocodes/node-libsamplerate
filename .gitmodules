@@ -1,3 +1,0 @@
-[submodule "deps/libsamplerate"]
-	path = deps/libsamplerate
-	url = https://github.com/erikd/libsamplerate
