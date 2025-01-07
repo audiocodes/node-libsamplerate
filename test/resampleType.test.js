@@ -5,9 +5,9 @@ const sinon = require('sinon');
 
 describe('SampleRate resample type', function () {
 
-    var resample;
-    var gen;
-    var nullStream
+    let resample;
+    let gen;
+    let nullStream
 
     afterEach(function () {
         resample.destroy();
@@ -17,15 +17,15 @@ describe('SampleRate resample type', function () {
 
     it('should resample witn SRC_SINC_BEST_QUALITY', function (done) {
         this.timeout(10000);
-        var eventSpy = sinon.spy();
-        var opts = JSON.parse(JSON.stringify(helper.defaultOpts));
+        let eventSpy = sinon.spy();
+        let opts = JSON.parse(JSON.stringify(helper.defaultOpts));
         opts.type = SampleRate.SRC_SINC_BEST_QUALITY;
-        var genTotal = 0;
-        var resampleTotal = 0;
-        var ratio = opts.toRate / opts.fromRate;
+        let genTotal = 0;
+        let resampleTotal = 0;
+        let ratio = opts.toRate / opts.fromRate;
 
-        var doAssert = () => {
-            var testRatio = resampleTotal / genTotal;
+        let doAssert = () => {
+            let testRatio = resampleTotal / genTotal;
             assert.deepEqual(Number.parseFloat(ratio).toFixed(2), Number.parseFloat(testRatio).toFixed(2));
             assert(eventSpy.called, 'Event did not fire in 6000ms.');
             assert(eventSpy.calledOnce, 'Event fired more than once');
@@ -59,15 +59,15 @@ describe('SampleRate resample type', function () {
 
     it('should resample witn SRC_SINC_MEDIUM_QUALITY', function (done) {
         this.timeout(10000);
-        var eventSpy = sinon.spy();
-        var opts = JSON.parse(JSON.stringify(helper.defaultOpts));
+        let eventSpy = sinon.spy();
+        let opts = JSON.parse(JSON.stringify(helper.defaultOpts));
         opts.type = SampleRate.SRC_SINC_MEDIUM_QUALITY;
-        var genTotal = 0;
-        var resampleTotal = 0;
-        var ratio = opts.toRate / opts.fromRate;
+        let genTotal = 0;
+        let resampleTotal = 0;
+        let ratio = opts.toRate / opts.fromRate;
 
-        var doAssert = () => {
-            var testRatio = resampleTotal / genTotal;
+        let doAssert = () => {
+            let testRatio = resampleTotal / genTotal;
             assert.deepEqual(Number.parseFloat(ratio).toFixed(2), Number.parseFloat(testRatio).toFixed(2));
             assert(eventSpy.called, 'Event did not fire in 6000ms.');
             assert(eventSpy.calledOnce, 'Event fired more than once');
@@ -101,15 +101,15 @@ describe('SampleRate resample type', function () {
 
     it('should resample witn SRC_SINC_FASTEST', function (done) {
         this.timeout(10000);
-        var eventSpy = sinon.spy();
-        var opts = JSON.parse(JSON.stringify(helper.defaultOpts));
+        let eventSpy = sinon.spy();
+        let opts = JSON.parse(JSON.stringify(helper.defaultOpts));
         opts.type = SampleRate.SRC_SINC_FASTEST;
-        var genTotal = 0;
-        var resampleTotal = 0;
-        var ratio = opts.toRate / opts.fromRate;
+        let genTotal = 0;
+        let resampleTotal = 0;
+        let ratio = opts.toRate / opts.fromRate;
 
-        var doAssert = () => {
-            var testRatio = resampleTotal / genTotal;
+        let doAssert = () => {
+            let testRatio = resampleTotal / genTotal;
             assert.deepEqual(Number.parseFloat(ratio).toFixed(2), Number.parseFloat(testRatio).toFixed(2));
             assert(eventSpy.called, 'Event did not fire in 6000ms.');
             assert(eventSpy.calledOnce, 'Event fired more than once');
@@ -143,15 +143,15 @@ describe('SampleRate resample type', function () {
 
     it('should resample witn SRC_ZERO_ORDER_HOLD', function (done) {
         this.timeout(10000);
-        var eventSpy = sinon.spy();
-        var opts = JSON.parse(JSON.stringify(helper.defaultOpts));
+        let eventSpy = sinon.spy();
+        let opts = JSON.parse(JSON.stringify(helper.defaultOpts));
         opts.type = SampleRate.SRC_ZERO_ORDER_HOLD;
-        var genTotal = 0;
-        var resampleTotal = 0;
-        var ratio = opts.toRate / opts.fromRate;
+        let genTotal = 0;
+        let resampleTotal = 0;
+        let ratio = opts.toRate / opts.fromRate;
 
-        var doAssert = () => {
-            var testRatio = resampleTotal / genTotal;
+        let doAssert = () => {
+            let testRatio = resampleTotal / genTotal;
             assert.deepEqual(Number.parseFloat(ratio).toFixed(2), Number.parseFloat(testRatio).toFixed(2));
             assert(eventSpy.called, 'Event did not fire in 6000ms.');
             assert(eventSpy.calledOnce, 'Event fired more than once');
@@ -185,15 +185,15 @@ describe('SampleRate resample type', function () {
 
     it('should resample witn SRC_LINEAR', function (done) {
         this.timeout(10000);
-        var eventSpy = sinon.spy();
-        var opts = JSON.parse(JSON.stringify(helper.defaultOpts));
+        let eventSpy = sinon.spy();
+        let opts = JSON.parse(JSON.stringify(helper.defaultOpts));
         opts.type = SampleRate.SRC_LINEAR;
-        var genTotal = 0;
-        var resampleTotal = 0;
-        var ratio = opts.toRate / opts.fromRate;
+        let genTotal = 0;
+        let resampleTotal = 0;
+        let ratio = opts.toRate / opts.fromRate;
 
-        var doAssert = () => {
-            var testRatio = resampleTotal / genTotal;
+        let doAssert = () => {
+            let testRatio = resampleTotal / genTotal;
             assert.deepEqual(Number.parseFloat(ratio).toFixed(2), Number.parseFloat(testRatio).toFixed(2));
             assert(eventSpy.called, 'Event did not fire in 6000ms.');
             assert(eventSpy.calledOnce, 'Event fired more than once');

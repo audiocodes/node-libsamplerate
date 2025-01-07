@@ -4,9 +4,9 @@ const sinon = require('sinon');
 
 describe('SampleRate events', function () {
 
-    var resample;
-    var gen;
-    var nullStream
+    let resample;
+    let gen;
+    let nullStream
 
     afterEach(function () {
         resample.on('close', () => {
@@ -18,10 +18,10 @@ describe('SampleRate events', function () {
     });
 
     it('should fire pipe event', function (done) {
-        var eventSpy = sinon.spy();
-        var opts = JSON.parse(JSON.stringify(helper.defaultOpts));
+        let eventSpy = sinon.spy();
+        let opts = JSON.parse(JSON.stringify(helper.defaultOpts));
 
-        var doAssert = () => {
+        let doAssert = () => {
             assert(eventSpy.called, 'Event did not fire in 6000ms.');
             assert(eventSpy.calledOnce, 'Event fired more than once');
             done();
@@ -41,10 +41,10 @@ describe('SampleRate events', function () {
     });
 
     it('should fire unpipe event', function (done) {
-        var eventSpy = sinon.spy();
-        var opts = JSON.parse(JSON.stringify(helper.defaultOpts));
+        let eventSpy = sinon.spy();
+        let opts = JSON.parse(JSON.stringify(helper.defaultOpts));
 
-        var doAssert = () => {
+        let doAssert = () => {
             assert(eventSpy.called, 'Event did not fire in 6000ms.');
             assert(eventSpy.calledOnce, 'Event fired more than once');
             done();
@@ -64,10 +64,10 @@ describe('SampleRate events', function () {
     });
 
     it('should fire finish event', function (done) {
-        var eventSpy = sinon.spy();
-        var opts = JSON.parse(JSON.stringify(helper.defaultOpts));
+        let eventSpy = sinon.spy();
+        let opts = JSON.parse(JSON.stringify(helper.defaultOpts));
 
-        var doAssert = () => {
+        let doAssert = () => {
             assert(eventSpy.called, 'Event did not fire in 6000ms.');
             assert(eventSpy.calledOnce, 'Event fired more than once');
             done();
@@ -91,10 +91,10 @@ describe('SampleRate events', function () {
     });
 
     it('should fire end event', function (done) {
-        var eventSpy = sinon.spy();
-        var opts = JSON.parse(JSON.stringify(helper.defaultOpts));
+        let eventSpy = sinon.spy();
+        let opts = JSON.parse(JSON.stringify(helper.defaultOpts));
 
-        var doAssert = () => {
+        let doAssert = () => {
             assert(eventSpy.called, 'Event did not fire in 6000ms.');
             assert(eventSpy.calledOnce, 'Event fired more than once');
             done();

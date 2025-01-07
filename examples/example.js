@@ -15,8 +15,8 @@ let options = {
 
 const resample = new SampleRate(options);
 // Start read at byte 44 to avoid WAV header data
-var rs = fs.createReadStream('infile.wav', {start: 44});
-var ws = fs.createWriteStream('outfile.wav');
+let rs = fs.createReadStream('infile.wav', {start: 44});
+let ws = fs.createWriteStream('outfile.wav');
 
 ws.write(header(0, {
     bitDepth: options.toDepth,

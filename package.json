@@ -25,6 +25,7 @@
     "scripts": {
         "install": "prebuild-install || cmake-js compile",
         "test": "nyc mocha test/*.test.js",
+        "lint": "eslint",
         "build:dev": "cmake-js build --debug",
         "build": "cmake-js build",
         "rebuild:dev": "cmake-js rebuild --debug",
@@ -46,6 +47,9 @@
     },
     "homepage": "https://github.com/audiocodes/node-libsamplerate#readme",
     "devDependencies": {
+        "@eslint/js": "^9.17.0",
+        "eslint": "^9.17.0",
+        "globals": "^15.14.0",
         "mocha": "^11.0.1",
         "nyc": "^17.1.0",
         "sinon": "^19.0.2"

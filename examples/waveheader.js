@@ -15,25 +15,25 @@
  * understand how to use the one above, so I made my own.
  * You propably wanna use that one
  */
-module.exports = generateHeader = (length, options) => {
+module.exports = function generateHeader(length, options) {
     options = options || {};
-    var RIFF = Buffer.from('RIFF');
-    var WAVE = Buffer.from('WAVE');
-    var fmt = Buffer.from('fmt ');
-    var data = Buffer.from('data');
+    let RIFF = Buffer.from('RIFF');
+    let WAVE = Buffer.from('WAVE');
+    let fmt = Buffer.from('fmt ');
+    let data = Buffer.from('data');
 
-    var MAX_WAV = 4294967295 - 100;
-    var endianness = 'LE';
-    var format = 1; // raw PCM
-    var channels = options.channels || 1;
-    var sampleRate = options.sampleRate || 44100;
-    var bitDepth = options.bitDepth || 16;
+    let MAX_WAV = 4294967295 - 100;
+    let endianness = 'LE';
+    let format = 1; // raw PCM
+    let channels = options.channels || 1;
+    let sampleRate = options.sampleRate || 44100;
+    let bitDepth = options.bitDepth || 16;
 
-    var headerLength = 44;
-    var dataLength = length || MAX_WAV;
-    var fileSize = dataLength + headerLength;
-    var header = Buffer.alloc(headerLength);
-    var offset = 0;
+    let headerLength = 44;
+    let dataLength = length || MAX_WAV;
+    let fileSize = dataLength + headerLength;
+    let header = Buffer.alloc(headerLength);
+    let offset = 0;
 
     // write the "RIFF" identifier
     RIFF.copy(header, offset);
@@ -71,8 +71,8 @@ module.exports = generateHeader = (length, options) => {
     offset += 4;
 
     // write the byte rate
-    var byteRate;// = sampleRate * channels * bitDepth / 8;
-    var blockAlign;
+    let byteRate;// = sampleRate * channels * bitDepth / 8;
+    let blockAlign;
     if(bitDepth == 16){
         byteRate = sampleRate * channels * 2;
         blockAlign = channels * 2;

@@ -7,5 +7,7 @@ test/
 .prebuildrc
 .vscode/
 .dockerignore
+.nyc_output/
 Dockerfile*
 *.md
+eslint.config.mjs

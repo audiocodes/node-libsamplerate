@@ -2,7 +2,7 @@ const { Readable } = require('stream');
 
 function signed (n) {
     if (isNaN(n)) return 0;
-    var b = Math.pow(2, 15);
+    let b = Math.pow(2, 15);
     return n > 0
         ? Math.min(b - 1, Math.floor((b * n) - 1))
         : Math.max(-b, Math.ceil((b * n) - 1))
@@ -30,11 +30,11 @@ class AudioGenerator extends Readable {
             return Math.max(Math.min(x, Math.pow(2,15)-1), -Math.pow(2,15));
         }
 
-        for (var i = 0; i < buf.length; i += 2) {
-            var t = this.t + Math.floor(i / 2) / this.rate;
-            var counter = this.i + Math.floor(i / 2);
+        for (let i = 0; i < buf.length; i += 2) {
+            let t = this.t + Math.floor(i / 2) / this.rate;
+            let counter = this.i + Math.floor(i / 2);
 
-            var n = this._fn.call(this, t, counter);
+            let n = this._fn.call(this, t, counter);
             if (isNaN(n)) n = 0;
             n = clamp(signed(n))
             switch (this.bitDepth) {
