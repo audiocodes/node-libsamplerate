@@ -1,0 +1,15 @@
+FROM node:22-alpine3.20 AS build
+WORKDIR /samplerate
+RUN apk add \
+  ca-certificates \
+  cmake \
+  g++ \
+  git \
+  make \
+  python3
+COPY . .
+RUN npm ci --ignore-scripts
+RUN MAKEFLAGS=-j$(nproc) npx -y prebuild --backend cmake-js
+
+FROM scratch
+COPY --from=build /samplerate/prebuilds .

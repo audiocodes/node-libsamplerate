@@ -1,0 +1,14 @@
+.git/
+.github/
+.vscode/
+build/
+examples/
+node_modules/
+prebuilds/
+test/
+.gitignore
+.dockerignore
+.npmignore
+.prebuildrc
+Dockerfile*
+*.md

@@ -1,0 +1,77 @@
+name: Add native binaries to release
+
+on:
+  push:
+    tags: ['*']
+  workflow_dispatch:
+
+jobs:
+  prebuild:
+    strategy:
+      matrix:
+        os: [ macos, windows ]
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}-latest
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use nodejs
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        if: matrix.os == 'macos'
+        run: |
+          brew update
+          brew install libsamplerate
+        shell: bash
+      - name: Add msbuild to PATH
+        if: matrix.os == 'windows'
+        uses: microsoft/setup-msbuild@v1.3
+      - name: Install node-gyp
+        if: matrix.os == 'windows-latest'
+        run: |
+          npm install --global node-gyp@latest
+      - name: Dependencies
+        run: |
+          npm install --ignore-scripts
+      - name: Build
+        run: |
+          npx -y prebuild --backend cmake-js
+      - name: Upload
+        run: |
+          npx -y prebuild --upload-all ${{ secrets.UPLOAD_TOKEN }}
+        env:
+          MAKEFLAGS: -j4
+      - name: Publish
+        if: matrix.os == 'macos'
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  prebuild-linux:
+    name: ${{ matrix.os }}
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    strategy:
+      matrix:
+        os: [ debian, alpine ]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use nodejs
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build
+        run: |
+          docker buildx build --platform linux/amd64,linux/arm64 . -f Dockerfile.${{ matrix.os }} --output prebuilds
+      - name: Upload
+        run: |
+          npx -y prebuild --upload-all ${{ secrets.UPLOAD_TOKEN }}

@@ -1,6 +1,6 @@
 {
     "name": "@audc/libsamplerate",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Native bindings for libsamplerate",
     "main": "index.js",
     "license": "MIT",
@@ -23,7 +23,7 @@
         "wav"
     ],
     "scripts": {
-        "install": "cmake-js compile",
+        "install": "prebuild-install || cmake-js compile",
         "test": "nyc mocha test/*.test.js",
         "build:dev": "cmake-js build --debug",
         "build": "cmake-js build",
@@ -34,7 +34,8 @@
     "dependencies": {
         "bindings": "^1.5.0",
         "cmake-js": "^7.3.0",
-        "node-addon-api": "^8.3.0"
+        "node-addon-api": "^8.3.0",
+        "prebuild-install": "^7.1.2"
     },
     "engines": {
         "node": ">=18.0.0"

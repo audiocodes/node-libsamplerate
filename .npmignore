@@ -1,0 +1,11 @@
+build/
+examples/
+out/
+prebuilds/
+test/
+.github/
+.prebuildrc
+.vscode/
+.dockerignore
+Dockerfile*
+*.md
