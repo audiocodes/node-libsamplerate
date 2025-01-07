@@ -54,7 +54,7 @@ describe('SampleRate events', function () {
         gen = helper.getGenerator(opts);
         nullStream = helper.getNullstream();
 
-        gen.on('end', doAssert);
+        gen.on('end', () => setImmediate(doAssert));
 
         resample.on('unpipe', () => {
             eventSpy();
@@ -81,7 +81,7 @@ describe('SampleRate events', function () {
             resample.end();
         });
 
-        resample.on('end', doAssert);
+        resample.on('end', () => setImmediate(doAssert));
 
         resample.on('finish', () => {
             eventSpy();

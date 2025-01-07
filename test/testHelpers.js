@@ -1,6 +1,6 @@
 const SampleRate = require('../index.js');
-const Generator = require('audio-generator/stream');
 const { Writable } = require('stream');
+const { AudioGenerator } = require('./audioGenerator.js');
 
 var defaultOpts = {
     duration: 5,
@@ -27,9 +27,9 @@ var getGenerator = (opts) => {
     var generatorOpts = {
         duration: opts.duration,
         bitDepth: opts.fromDepth,
-        sampleRate: opts.fromRate,
+        rate: opts.fromRate,
     }
-    return new Generator(genFunc, generatorOpts);
+    return new AudioGenerator(genFunc, generatorOpts);
 }
 
 var getNullstream = () => {
@@ -46,8 +46,8 @@ var getNullstream = () => {
 }
 
 module.exports = {
-    defaultOpts: defaultOpts,
-    getResampler: getResampler,
-    getGenerator: getGenerator,
-    getNullstream: getNullstream
+    defaultOpts,
+    getResampler,
+    getGenerator,
+    getNullstream
 }
