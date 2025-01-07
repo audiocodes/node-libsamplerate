@@ -30,11 +30,11 @@ class AudioGenerator extends Readable {
             return Math.max(Math.min(x, Math.pow(2,15)-1), -Math.pow(2,15));
         }
 
-        for (let i = 0; i < buf.length; i += 2) {
-            let t = this.t + Math.floor(i / 2) / this.rate;
-            let counter = this.i + Math.floor(i / 2);
+        for (let i = 0; i < buf.length; i += this.byteDepth) {
+            let t = this.t + Math.floor(i / this.byteDepth) / this.rate;
+            let counter = this.i + Math.floor(i / this.byteDepth);
 
-            let n = this._fn.call(this, t, counter);
+            let n = this._fn(t, counter);
             if (isNaN(n)) n = 0;
             n = clamp(signed(n))
             switch (this.bitDepth) {
