@@ -27,7 +27,10 @@
         "test": "nyc mocha test/*.test.js",
         "lint": "eslint",
         "build:dev": "cmake-js build --debug",
-        "build": "cmake-js build",
+        "build": "npx cmake-js build",
+        "build:tsc": "tsc",
+        "prepack": "npx tsc",
+        "pretest": "npx tsc",
         "rebuild:dev": "cmake-js rebuild --debug",
         "rebuild": "cmake-js rebuild",
         "clean": "node-gyp clean"
@@ -48,15 +51,24 @@
     "homepage": "https://github.com/audiocodes/node-libsamplerate#readme",
     "devDependencies": {
         "@eslint/js": "^9.17.0",
+        "@tsconfig/node18": "^18.2.4",
+        "@types/bindings": "^1.5.5",
         "eslint": "^9.17.0",
         "globals": "^15.14.0",
         "mocha": "^11.0.1",
         "nyc": "^17.1.0",
-        "sinon": "^19.0.2"
+        "sinon": "^19.0.2",
+        "typescript": "^5.7.2"
     },
+    "files": [
+        "index.js",
+        "index.d.ts",
+        "src/**",
+        "CMakeLists.txt"
+    ],
     "nyc": {
         "extension": [
-            ".js"
+            ".ts"
         ],
         "exclude": [
             "example.js",

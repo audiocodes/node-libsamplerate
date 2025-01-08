@@ -12,3 +12,4 @@ test/
 .prebuildrc
 Dockerfile*
 *.md
+index.js*
