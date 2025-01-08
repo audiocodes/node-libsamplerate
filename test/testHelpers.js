@@ -1,4 +1,4 @@
-const SampleRate = require('../index.js');
+const { SampleRate } = require('../index.js');
 const { Writable } = require('stream');
 const { AudioGenerator } = require('./audioGenerator.js');
 
