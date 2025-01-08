@@ -14,10 +14,8 @@ void s24_to_float_array(const int *in, float *out, int len)
 
 void float_to_s24_array(const float *in, int *out, int len)
 {
-    double scaled_value;
-
     while (len--) {
-        scaled_value = in[len] * (8.0 * 0x200000);
+        double scaled_value = in[len] * (8.0 * 0x200000);
         if (scaled_value >= (1.0 * 0x7FFFFF)) {
             out[len] = 0x7fffff;
             continue;
@@ -104,15 +102,15 @@ Napi::Value SampleRateStream::Transform(const Napi::CallbackInfo &info)
     if (fromDepth == 16 && toDepth != 16)
         lengthOut *= 2;
 
-    std::unique_ptr<float> dataOutFloat(new float[lengthOut]);
-    std::unique_ptr<float> dataInFloat(new float[lengthIn]);
+    std::unique_ptr<float[]> dataOutFloat(new float[lengthOut]);
+    std::unique_ptr<float[]> dataInFloat(new float[lengthIn]);
 
     if (fromDepth == 16)
-        src_short_to_float_array((short *)inputBuffer, dataInFloat.get(), inputFrames * 2);
+        src_short_to_float_array((short *)inputBuffer, dataInFloat.get(), inputFrames);
     if (fromDepth == 24)
-        s24_to_float_array((int *)inputBuffer, dataInFloat.get(), inputFrames * 2);
+        s24_to_float_array((int *)inputBuffer, dataInFloat.get(), inputFrames);
     if (fromDepth == 32)
-        src_int_to_float_array((int *)inputBuffer, dataInFloat.get(), inputFrames * 2);
+        src_int_to_float_array((int *)inputBuffer, dataInFloat.get(), inputFrames);
 
     data.data_in = dataInFloat.get();
     data.data_out = dataOutFloat.get();
