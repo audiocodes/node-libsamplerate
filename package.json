@@ -1,6 +1,6 @@
 {
     "name": "@audc/libsamplerate",
-    "version": "1.0.9",
+    "version": "1.1.0",
     "description": "Native bindings for libsamplerate",
     "main": "index.js",
     "license": "MIT",
