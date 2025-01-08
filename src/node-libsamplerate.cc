@@ -107,11 +107,11 @@ Napi::Value SampleRateStream::Transform(const Napi::CallbackInfo &info)
     std::unique_ptr<float[]> dataInFloat(new float[lengthIn]);
 
     if (fromDepth == 16)
-        src_short_to_float_array((short *)inputBuffer, dataInFloat.get(), lengthIn);
+        src_short_to_float_array((short *)inputBuffer, dataInFloat.get(), (int)lengthIn);
     if (fromDepth == 24)
-        s24_to_float_array((int *)inputBuffer, dataInFloat.get(), lengthIn);
+        s24_to_float_array((int *)inputBuffer, dataInFloat.get(), (int)lengthIn);
     if (fromDepth == 32)
-        src_int_to_float_array((int *)inputBuffer, dataInFloat.get(), lengthIn);
+        src_int_to_float_array((int *)inputBuffer, dataInFloat.get(), (int)lengthIn);
 
     data.data_in = dataInFloat.get();
     data.data_out = dataOutFloat.get();
