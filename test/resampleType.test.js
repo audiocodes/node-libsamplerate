@@ -1,4 +1,4 @@
-const SampleRate = require('../index.js');
+const { SampleRate } = require('../index.js');
 const helper = require('./testHelpers');
 const assert = require('assert');
 const sinon = require('sinon');

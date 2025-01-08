@@ -20,7 +20,7 @@ For Windows, install the Visual C++ build tools and download cmake from [cmake.o
 ## Usage
 
 Include module;
-`const SampleRate = require('@audc/libsamplerate');`
+`const { SampleRate } = require('@audc/libsamplerate');`
 
 Instantiate:
 `const resample = new SampleRate(options);`
