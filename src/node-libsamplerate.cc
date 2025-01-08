@@ -112,7 +112,7 @@ Napi::Value SampleRateStream::Transform(const Napi::CallbackInfo &info)
         depth = 32;
     }
     unsigned int inputFrames = (int)floor(lengthIn / (channels * (depth / 8)));
-    unsigned int outputFrames = (data.src_ratio * inputFrames) + 1;
+    unsigned int outputFrames = (int)(data.src_ratio * inputFrames) + 1;
     unsigned int lengthOut = (int)floor(data.src_ratio * lengthIn);
 
     if(fromDepth == 16 && toDepth !=16){
