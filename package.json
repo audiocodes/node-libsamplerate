@@ -23,17 +23,17 @@
         "wav"
     ],
     "scripts": {
-        "install": "prebuild-install || cmake-js compile",
+        "install": "prebuild-install || cmake-js compile -p 4",
         "test": "nyc mocha test/*.test.js",
         "lint": "eslint",
-        "build:dev": "cmake-js build --debug",
-        "build": "npx cmake-js build",
+        "build:dev": "cmake-js build --debug -p 4",
+        "build": "cmake-js build -p 4",
         "build:tsc": "tsc",
         "prepack": "npx tsc",
         "pretest": "npx tsc",
-        "rebuild:dev": "cmake-js rebuild --debug",
-        "rebuild": "cmake-js rebuild",
-        "clean": "node-gyp clean"
+        "rebuild:dev": "cmake-js rebuild --debug -p 4",
+        "rebuild": "cmake-js rebuild -p 4",
+        "clean": "cmake-js clean"
     },
     "dependencies": {
         "bindings": "^1.5.0",
