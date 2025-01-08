@@ -39,7 +39,7 @@ jobs:
     steps:
       - name: install build deps
         run: |
-          apk add ca-certificates cmake g++ git libsamplerate-dev make python3
+          apk add ca-certificates cmake g++ git make python3
       - uses: actions/checkout@v4
       - name: Build
         run: |
