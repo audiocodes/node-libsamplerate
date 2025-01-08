@@ -19,17 +19,12 @@ For Windows, install the Visual C++ build tools and download cmake from [cmake.o
 
 ## Usage
 
-Include module;
-`const { SampleRate } = require('@audc/libsamplerate');`
-
-Instantiate:
-`const resample = new SampleRate(options);`
-where options is an object of the form:
-
 ```javascript
-let options = {
+const { SampleRate, SRC_SINC_MEDIUM_QALITY } = require('@audc/libsamplerate');
+
+const options = {
     // Value can be from 0 to 4 or using enum. 0 is the best quality and the slowest.
-    type: SampleRate.SRC_SINC_MEDIUM_QALITY,
+    type: SRC_SINC_MEDIUM_QALITY,
     // Stereo
     channels: 2,
     // Sample rate of source
@@ -41,6 +36,7 @@ let options = {
     // Desired bit depth. Valid values: 16 or 32
     toDepth: 16
 }
+const resample = new SampleRate(options);
 ```
 
 Input audio data should be signed integers (e.g. S16_LE or S32_LE). Output will also be signed integers. Floating point input/output is not yet supported.
@@ -48,8 +44,8 @@ Input should be from a readable stream, output should be to a writable stream: e
 
 ```javascript
 const fs = require('fs');
-let rs = fs.createReadStream('input.pcm');
-let ws = fs.createWriteStream('output.pcm');
+const rs = fs.createReadStream('input.pcm');
+const ws = fs.createWriteStream('output.pcm');
 
 rs.pipe(resample).pipe(ws);
 ```
