@@ -1,6 +1,8 @@
-# node-libsamplerate
+# libsamplerate
 
-ABI stable native implementation of libsamplerate as a Transform stream. Built from the latest [libsamplerate](https://github.com/erikd/libsamplerate) code. Uses [N-API](https://nodejs.org/api/n-api.html), [node-addon-api](https://www.npmjs.com/package/node-addon-api) and [cmake-js](https://www.npmjs.com/package/cmake-js). This module has no external dependencies.
+ABI stable native implementation of libsamplerate as a Transform stream. Built from the latest [libsamplerate](https://github.com/libsndfile/libsamplerate) code. Uses [N-API](https://nodejs.org/api/n-api.html), [node-addon-api](https://www.npmjs.com/package/node-addon-api) and [cmake-js](https://www.npmjs.com/package/cmake-js). This module has no external dependencies.
+
+Originally forked from [node-libsamplerate](https://www.npmjs.com/package/node-libsamplerate) package.
 
 ## Introduction
 
@@ -10,7 +12,7 @@ This module uses the "Full Api" detailed [here](http://www.mega-nerd.com/libsamp
 ## Install
 
 ```shell
-npm install @audc/libsamplerate --save
+npm install libsamplerate --save
 ```
 
 Requires `cmake` and a valid toolchain to build.

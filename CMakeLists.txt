@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.11)
-project(node-libsamplerate)
+project(libsamplerate)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
@@ -28,4 +28,4 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_JS_INC} "${CMAKE_SOUR
 # Essential library files to link to a node addon
 # You should add this line in every CMake.js based project
 target_link_libraries(${PROJECT_NAME} ${CMAKE_JS_LIB} samplerate)
-add_dependencies(node-libsamplerate samplerate)
+add_dependencies(libsamplerate samplerate)

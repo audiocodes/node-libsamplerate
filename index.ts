@@ -1,6 +1,6 @@
 import { Transform, TransformCallback, TransformOptions } from 'stream';
 import bindings from 'bindings';
-const { SampleRateStream } = bindings('node-libsamplerate');
+const { SampleRateStream } = bindings('libsamplerate');
 
 interface SampleRateOptions extends TransformOptions {
     type?: number;
