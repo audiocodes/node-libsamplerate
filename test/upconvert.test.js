@@ -1,4 +1,4 @@
-const SampleRate = require('../index.js');
+const { Interpolation } = require('../index.js');
 const helper = require('./testHelpers');
 const assert = require('assert');
 const sinon = require('sinon');
@@ -19,7 +19,7 @@ describe('SampleRate upconvert tests', function () {
         this.timeout(10000);
         let eventSpy = sinon.spy();
         let opts = JSON.parse(JSON.stringify(helper.defaultOpts));
-        opts.type = SampleRate.SRC_SINC_MEDIUM_QUALITY;
+        opts.type = Interpolation.SINC_MEDIUM_QUALITY;
         opts.toDepth = 32;
         let genTotal = 0;
         let resampleTotal = 0;
@@ -64,7 +64,7 @@ describe('SampleRate upconvert tests', function () {
         this.timeout(10000);
         let eventSpy = sinon.spy();
         let opts = JSON.parse(JSON.stringify(helper.defaultOpts));
-        opts.type = SampleRate.SRC_SINC_MEDIUM_QUALITY;
+        opts.type = Interpolation.SINC_MEDIUM_QUALITY;
         opts.toDepth = 32;
         opts.toRate = 88200;
         let genTotal = 0;

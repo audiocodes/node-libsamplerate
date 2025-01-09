@@ -20,11 +20,11 @@ For Windows, install the Visual C++ build tools and download cmake from [cmake.o
 ## Usage
 
 ```javascript
-const { SampleRate, SRC_SINC_MEDIUM_QUALITY } = require('@audc/libsamplerate');
+const { SampleRate, Interpolation } = require('libsamplerate');
 
 const options = {
     // Value can be from 0 to 4 or using enum. 0 is the best quality and the slowest.
-    type: SRC_SINC_MEDIUM_QUALITY,
+    type: Interpolation.SINC_MEDIUM_QUALITY,
     // Stereo
     channels: 2,
     // Sample rate of source

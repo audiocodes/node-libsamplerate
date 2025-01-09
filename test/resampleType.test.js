@@ -1,4 +1,4 @@
-const SampleRate = require('../index.js');
+const { Interpolation } = require('../index.js');
 const helper = require('./testHelpers');
 const assert = require('assert');
 const sinon = require('sinon');
@@ -15,11 +15,11 @@ describe('SampleRate resample type', function () {
         nullStream.destroy();
     });
 
-    it('should resample witn SRC_SINC_BEST_QUALITY', function (done) {
+    it('should resample witn SINC_BEST_QUALITY', function (done) {
         this.timeout(10000);
         let eventSpy = sinon.spy();
         let opts = JSON.parse(JSON.stringify(helper.defaultOpts));
-        opts.type = SampleRate.SRC_SINC_BEST_QUALITY;
+        opts.type = Interpolation.SINC_BEST_QUALITY;
         let genTotal = 0;
         let resampleTotal = 0;
         let ratio = opts.toRate / opts.fromRate;
@@ -57,11 +57,11 @@ describe('SampleRate resample type', function () {
         gen.pipe(resample).pipe(nullStream);
     });
 
-    it('should resample witn SRC_SINC_MEDIUM_QUALITY', function (done) {
+    it('should resample witn SINC_MEDIUM_QUALITY', function (done) {
         this.timeout(10000);
         let eventSpy = sinon.spy();
         let opts = JSON.parse(JSON.stringify(helper.defaultOpts));
-        opts.type = SampleRate.SRC_SINC_MEDIUM_QUALITY;
+        opts.type = Interpolation.SINC_MEDIUM_QUALITY;
         let genTotal = 0;
         let resampleTotal = 0;
         let ratio = opts.toRate / opts.fromRate;
@@ -99,11 +99,11 @@ describe('SampleRate resample type', function () {
         gen.pipe(resample).pipe(nullStream);
     });
 
-    it('should resample witn SRC_SINC_FASTEST', function (done) {
+    it('should resample witn SINC_FASTEST', function (done) {
         this.timeout(10000);
         let eventSpy = sinon.spy();
         let opts = JSON.parse(JSON.stringify(helper.defaultOpts));
-        opts.type = SampleRate.SRC_SINC_FASTEST;
+        opts.type = Interpolation.SINC_FASTEST;
         let genTotal = 0;
         let resampleTotal = 0;
         let ratio = opts.toRate / opts.fromRate;
@@ -141,11 +141,11 @@ describe('SampleRate resample type', function () {
         gen.pipe(resample).pipe(nullStream);
     });
 
-    it('should resample witn SRC_ZERO_ORDER_HOLD', function (done) {
+    it('should resample witn ZERO_ORDER_HOLD', function (done) {
         this.timeout(10000);
         let eventSpy = sinon.spy();
         let opts = JSON.parse(JSON.stringify(helper.defaultOpts));
-        opts.type = SampleRate.SRC_ZERO_ORDER_HOLD;
+        opts.type = Interpolation.ZERO_ORDER_HOLD;
         let genTotal = 0;
         let resampleTotal = 0;
         let ratio = opts.toRate / opts.fromRate;
@@ -183,11 +183,11 @@ describe('SampleRate resample type', function () {
         gen.pipe(resample).pipe(nullStream);
     });
 
-    it('should resample witn SRC_LINEAR', function (done) {
+    it('should resample witn LINEAR', function (done) {
         this.timeout(10000);
         let eventSpy = sinon.spy();
         let opts = JSON.parse(JSON.stringify(helper.defaultOpts));
-        opts.type = SampleRate.SRC_LINEAR;
+        opts.type = Interpolation.LINEAR;
         let genTotal = 0;
         let resampleTotal = 0;
         let ratio = opts.toRate / opts.fromRate;

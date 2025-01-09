@@ -1,10 +1,10 @@
-const { SampleRate, SRC_SINC_MEDIUM_QUALITY } = require('../index.js');
+const { SampleRate, Interpolation } = require('../index.js');
 const fs = require('fs');
 const header = require('./waveheader.js');
 
 
 let options = {
-    type: SRC_SINC_MEDIUM_QUALITY,
+    type: Interpolation.SINC_MEDIUM_QUALITY,
     channels: 2, 
     fromRate: 44100, 
     fromDepth: 16,

@@ -57,8 +57,10 @@ export class SampleRate extends Transform {
     }
 }
 
-export const SRC_SINC_BEST_QUALITY = 0;
-export const SRC_SINC_MEDIUM_QUALITY = 1;
-export const SRC_SINC_FASTEST = 2;
-export const SRC_ZERO_ORDER_HOLD = 3;
-export const SRC_LINEAR = 4;
+export const Interpolation = {
+    SINC_BEST_QUALITY: 0,
+    SINC_MEDIUM_QUALITY: 1,
+    SINC_FASTEST: 2,
+    ZERO_ORDER_HOLD: 3,
+    LINEAR: 4
+};
