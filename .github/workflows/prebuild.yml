@@ -29,17 +29,12 @@ jobs:
           npm install --ignore-scripts
       - name: Build
         run: |
-          npx -y prebuild --backend cmake-js
+          npx -y @audc/prebuild --backend cmake-js
       - name: Upload
         run: |
-          npx -y prebuild --upload-all ${{ secrets.UPLOAD_TOKEN }}
+          npx -y @audc/prebuild --upload-all ${{ secrets.UPLOAD_TOKEN }}
         env:
           MAKEFLAGS: -j4
-      - name: Publish
-        if: matrix.os == 'macos'
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   prebuild-linux:
     name: ${{ matrix.os }}
@@ -64,4 +59,4 @@ jobs:
           docker buildx build --platform linux/amd64,linux/arm64 . -f Dockerfile.${{ matrix.os }} --output prebuilds
       - name: Upload
         run: |
-          npx -y prebuild --upload-all ${{ secrets.UPLOAD_TOKEN }}
+          npx -y @audc/prebuild --upload-all ${{ secrets.UPLOAD_TOKEN }}
