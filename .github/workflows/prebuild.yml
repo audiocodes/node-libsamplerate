@@ -29,10 +29,12 @@ jobs:
           npm install --ignore-scripts
       - name: Build
         run: |
-          npx -y prebuild --backend cmake-js
+          npm cache clean --force
+          npx -y @audc/prebuild --backend cmake-js
       - name: Upload
+        # npm cache clean to workaround ECOMPROMISED error on Windows
         run: |
-          npx -y prebuild --upload-all ${{ secrets.UPLOAD_TOKEN }}
+          npx -y @audc/prebuild --upload-all ${{ secrets.UPLOAD_TOKEN }}
         env:
           MAKEFLAGS: -j4
       - name: Publish
@@ -64,4 +66,4 @@ jobs:
           docker buildx build --platform linux/amd64,linux/arm64 . -f Dockerfile.${{ matrix.os }} --output prebuilds
       - name: Upload
         run: |
-          npx -y prebuild --upload-all ${{ secrets.UPLOAD_TOKEN }}
+          npx -y @audc/prebuild --upload-all ${{ secrets.UPLOAD_TOKEN }}
