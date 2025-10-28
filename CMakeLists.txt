@@ -10,7 +10,7 @@ set(BUILD_TESTING OFF CACHE BOOL "Disable tests for libsamplerate")
 FetchContent_Declare(
   libsamplerate
   GIT_REPOSITORY https://github.com/libsndfile/libsamplerate
-  GIT_TAG 0.2.2
+  GIT_TAG 2ccde9568cca73c7b32c97fefca2e418c16ae5e3
 )
 
 FetchContent_MakeAvailable(libsamplerate)
