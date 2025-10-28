@@ -9,7 +9,7 @@ jobs:
   prebuild:
     strategy:
       matrix:
-        os: [ macos, windows ]
+        os: [ windows ]
     name: ${{ matrix.os }}
     runs-on: ${{ matrix.os }}-latest
     permissions:
@@ -19,7 +19,7 @@ jobs:
       - name: Use nodejs
         uses: actions/setup-node@v6
         with:
-          node-version: latest
+          node-version: 24
           registry-url: 'https://registry.npmjs.org'
       - name: Add msbuild to PATH
         if: matrix.os == 'windows'
@@ -28,7 +28,9 @@ jobs:
         run: |
           npm install --ignore-scripts
       - name: Build
+        shell: bash
         run: |
+          npm cache clean --force
           npx -y @audc/prebuild --backend cmake-js
       - name: Upload
         run: |
@@ -36,27 +38,3 @@ jobs:
         env:
           MAKEFLAGS: -j4
 
-  prebuild-linux:
-    name: ${{ matrix.os }}
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-    strategy:
-      matrix:
-        os: [ debian, alpine ]
-    steps:
-      - uses: actions/checkout@v5
-      - name: Use nodejs
-        uses: actions/setup-node@v6
-        with:
-          node-version: latest
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-      - name: Build
-        run: |
-          docker buildx build --platform linux/amd64,linux/arm64 . -f Dockerfile.${{ matrix.os }} --output prebuilds
-      - name: Upload
-        run: |
-          npx -y @audc/prebuild --upload-all ${{ secrets.UPLOAD_TOKEN }}
