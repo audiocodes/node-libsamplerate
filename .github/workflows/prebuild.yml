@@ -28,11 +28,11 @@ jobs:
         run: |
           npm install --ignore-scripts
       - name: Build
+        # npm cache clean to workaround ECOMPROMISED error on Windows
         run: |
           npm cache clean --force
           npx -y @audc/prebuild --backend cmake-js
       - name: Upload
-        # npm cache clean to workaround ECOMPROMISED error on Windows
         run: |
           npx -y @audc/prebuild --upload-all ${{ secrets.UPLOAD_TOKEN }}
         env:
