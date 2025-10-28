@@ -44,26 +44,25 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   prebuild-linux:
-    name: ${{ matrix.os }}
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write
     strategy:
       matrix:
+        arch: [ x64, arm64 ]
         os: [ debian, alpine ]
+    name: ${{ matrix.os }}-${{ matrix.arch }}
+    runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-24.04-arm' || 'ubuntu-24.04' }}
+    permissions:
+      id-token: write
     steps:
       - uses: actions/checkout@v5
       - name: Use nodejs
         uses: actions/setup-node@v6
         with:
           node-version: latest
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       - name: Build
         run: |
-          docker buildx build --platform linux/amd64,linux/arm64 . -f Dockerfile.${{ matrix.os }} --output prebuilds
+          docker buildx build . -f Dockerfile.${{ matrix.os }} --output prebuilds
       - name: Upload
         run: |
           npx -y @audc/prebuild --upload-all ${{ secrets.UPLOAD_TOKEN }}
