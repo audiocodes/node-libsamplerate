@@ -18,7 +18,7 @@ declare class TSampleRateStream {
     transform(chunk: any): any;
 }
 
-let defaultOpts: SampleRateOptions = {
+const defaultOpts: SampleRateOptions = {
     type: 2,
     channels: 2,
     fromRate: 48000,
