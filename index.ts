@@ -1,6 +1,5 @@
 import { Transform, TransformCallback, TransformOptions } from 'stream';
-import bindings from 'bindings';
-const { SampleRateStream } = bindings('libsamplerate');
+const { SampleRateStream } = require('node-gyp-build')(__dirname);
 
 interface SampleRateOptions extends TransformOptions {
     type?: number;

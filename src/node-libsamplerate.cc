@@ -125,7 +125,6 @@ Napi::Value SampleRateStream::Transform(const Napi::CallbackInfo &info)
     depth = toDepth == 24 ? 32 : toDepth;
     lengthOut = data.output_frames_gen * channels * (depth / 8);
     int *dataOut = new int[lengthOut];
-    int inFramesUsed = data.input_frames_used;
     int frameDiff = data.input_frames - data.input_frames_used;
     if (frameDiff != 0)
         std::cout << "outframes differs from inframes by " << frameDiff << std::endl;

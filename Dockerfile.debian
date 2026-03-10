@@ -3,14 +3,14 @@ WORKDIR /samplerate
 RUN apt-get update && \
   apt-get install -y --no-install-recommends \
   ca-certificates \
-  cmake \
   g++ \
-  git \
+  libsamplerate0-dev \
   make \
+  pkg-config \
   python3
 COPY . .
 RUN npm ci --ignore-scripts
-RUN MAKEFLAGS=-j$(nproc) npx -y prebuild --backend cmake-js
+RUN npm run prebuild
 
 FROM scratch
 COPY --from=build /samplerate/prebuilds .

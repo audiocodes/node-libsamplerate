@@ -18,6 +18,8 @@ jobs:
       fail-fast: false
     steps:
       - uses: actions/checkout@v6
+        with:
+          submodules: recursive
       - name: Use Node.js ${{ matrix.node }}
         uses: actions/setup-node@v6
         with:
@@ -25,7 +27,22 @@ jobs:
       - name: Add msbuild to PATH
         if: matrix.os == 'windows'
         uses: microsoft/setup-msbuild@v2
+      - name: Install Linux deps
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libsamplerate0-dev pkg-config
+      - name: Install macOS deps
+        if: matrix.os == 'macos-latest'
+        run: |
+          brew update
+          brew install libsamplerate pkg-config
       - name: Build
+        if: matrix.os != 'windows-latest'
+        run: |
+          npm install --build-from-source
+      - name: Build (Windows)
+        if: matrix.os == 'windows-latest'
         run: |
           npm install --build-from-source
       - name: Test
@@ -44,8 +61,10 @@ jobs:
     steps:
       - name: install build deps
         run: |
-          apk add ca-certificates cmake g++ git make python3
+          apk add ca-certificates g++ libsamplerate-dev make pkgconf python3
       - uses: actions/checkout@v6
+        with:
+          submodules: recursive
       - name: Build
         run: |
           npm install --build-from-source
