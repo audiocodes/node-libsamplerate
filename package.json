@@ -2,7 +2,8 @@
     "name": "libsamplerate",
     "version": "2.0.4",
     "description": "Native bindings for libsamplerate",
-    "main": "index.js",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "license": "MIT",
     "keywords": [
         "libsamplerate",
@@ -62,8 +63,7 @@
         "typescript-eslint": "^8.57.0"
     },
     "files": [
-        "index.js",
-        "index.d.ts",
+        "dist/**",
         "src/**",
         "CMakeLists.txt"
     ],

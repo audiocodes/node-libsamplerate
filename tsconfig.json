@@ -6,6 +6,7 @@
     "esModuleInterop": true,
     "declaration": true,
     "sourceMap": true,
+    "outDir": "dist"
   },
   "include": [
     "index.ts",

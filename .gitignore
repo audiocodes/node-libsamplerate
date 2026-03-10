@@ -3,5 +3,4 @@ build/
 .nyc_output/
 coverage/
 /prebuilds/
-/index.js*
-/index.d.ts
+/dist/
