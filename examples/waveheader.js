@@ -98,6 +98,7 @@ module.exports = function generateHeader(length, options) {
 
     // write the remaining length of the rest of the data
     header['writeUInt32' + endianness](dataLength, offset);
+    // eslint-disable-next-line no-useless-assignment
     offset += 4;
 
     // flush the header and after that pass-through "dataLength" bytes
