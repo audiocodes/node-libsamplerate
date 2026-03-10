@@ -6,6 +6,11 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 include(FetchContent)
 
+option(LIBSAMPLERATE_ENABLE_SINC_BEST_CONVERTER "Enable SINC_BEST_QUALITY converter in libsamplerate" OFF)
+
+# Forward option to the fetched subproject cache before it is configured.
+set(LIBSAMPLERATE_ENABLE_SINC_BEST_CONVERTER ${LIBSAMPLERATE_ENABLE_SINC_BEST_CONVERTER} CACHE BOOL "Enable SINC_BEST_QUALITY converter in libsamplerate" FORCE)
+
 set(BUILD_TESTING OFF CACHE BOOL "Disable tests for libsamplerate")
 FetchContent_Declare(
   libsamplerate

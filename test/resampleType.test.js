@@ -10,9 +10,12 @@ describe('SampleRate resample type', function () {
     let nullStream
 
     afterEach(function () {
-        resample.destroy();
-        gen.destroy();
-        nullStream.destroy();
+        if (resample)
+            resample.destroy();
+        if (gen)
+            gen.destroy();
+        if (nullStream)
+            nullStream.destroy();
     });
 
     it('should resample witn SINC_BEST_QUALITY', function (done) {
@@ -20,6 +23,13 @@ describe('SampleRate resample type', function () {
         let eventSpy = sinon.spy();
         let opts = JSON.parse(JSON.stringify(helper.defaultOpts));
         opts.type = Interpolation.SINC_BEST_QUALITY;
+
+        if (!helper.isSincBestAvailable()) {
+            assert.throws(() => { helper.getResampler(opts) }, /SINC_BEST_QUALITY is not available/);
+            done();
+            return;
+        }
+
         let genTotal = 0;
         let resampleTotal = 0;
         let ratio = opts.toRate / opts.fromRate;

@@ -64,6 +64,8 @@ SampleRateStream::SampleRateStream(const Napi::CallbackInfo &info)
         props.Set(Napi::String::New(env, key), value);
     }
     uint32_t type = inProps.Get("type").As<Napi::Number>().Uint32Value();
+    if (type == SRC_SINC_BEST_QUALITY && src_get_name(type) == nullptr)
+        throw Napi::Error::New(info.Env(), "SINC_BEST_QUALITY is not available in libsamplerate");
     uint32_t channels = inProps.Get("channels").As<Napi::Number>().Uint32Value();
     uint32_t fromRate = inProps.Get("fromRate").As<Napi::Number>().Uint32Value();
     uint32_t toRate = inProps.Get("toRate").As<Napi::Number>().Uint32Value();
@@ -71,8 +73,11 @@ SampleRateStream::SampleRateStream(const Napi::CallbackInfo &info)
     data.src_ratio = ratio;
     int error;
     src_state = src_new(type, channels, &error);
-    if (!src_state)
+    if (!src_state) {
+        if (type == SRC_SINC_BEST_QUALITY)
+            throw Napi::Error::New(info.Env(), "SINC_BEST_QUALITY is not available in libsamplerate");
         throw Napi::Error::New(info.Env(), src_strerror(error));
+    }
 }
 
 SampleRateStream::~SampleRateStream() {
