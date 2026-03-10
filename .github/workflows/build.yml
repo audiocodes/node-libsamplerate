@@ -17,7 +17,7 @@ jobs:
         node: [ 20, 22, 24 ]
       fail-fast: false
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Use Node.js ${{ matrix.node }}
         uses: actions/setup-node@v6
         with:
@@ -45,7 +45,7 @@ jobs:
       - name: install build deps
         run: |
           apk add ca-certificates cmake g++ git make python3
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Build
         run: |
           npm install --build-from-source
