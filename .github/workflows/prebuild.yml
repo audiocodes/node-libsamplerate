@@ -83,6 +83,6 @@ jobs:
         with:
           pattern: prebuilds-*
           merge-multiple: true
-          path: .
+          path: prebuilds
       - name: Publish
         run: npm publish
