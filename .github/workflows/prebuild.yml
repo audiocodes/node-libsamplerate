@@ -83,6 +83,13 @@ jobs:
         with:
           pattern: prebuilds-*
           merge-multiple: true
-          path: .
-      - name: Publish
-        run: npm publish
+          path: prebuilds
+      - name: Create npm package tarball
+        run: npm pack
+      - name: Upload npm package tarball
+        uses: actions/upload-artifact@v7
+        with:
+          name: npm-pack
+          path: "*.tgz"
+      # - name: Publish
+      #   run: npm publish
