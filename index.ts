@@ -1,6 +1,8 @@
 import { Transform, TransformCallback, TransformOptions } from 'stream';
-import bindings from 'bindings';
-const { SampleRateStream } = bindings('libsamplerate');
+import pkgPrebuilds from 'pkg-prebuilds';
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const bindingOptions = require('./binding-options.js');
+const { SampleRateStream } = pkgPrebuilds(__dirname, bindingOptions);
 
 interface SampleRateOptions extends TransformOptions {
     type?: number;

@@ -1,13 +1,14 @@
 {
   "extends": "@tsconfig/node22/tsconfig.json",
   "compilerOptions": {
-    "module": "CommonJS",
-    "moduleResolution": "classic",
+    "module": "Node16",
+    "types": ["node"],
     "esModuleInterop": true,
     "declaration": true,
     "sourceMap": true,
   },
   "include": [
     "index.ts",
+    "pkg-prebuilds.d.ts"
   ]
 }

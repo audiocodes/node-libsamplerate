@@ -28,20 +28,13 @@ jobs:
         run: |
           npm install --ignore-scripts
       - name: Build
-        # npm cache clean to workaround ECOMPROMISED error on Windows
         run: |
-          npm cache clean --force
-          npx -y @audc/prebuild --backend cmake-js
-      - name: Upload
-        run: |
-          npx -y @audc/prebuild --upload-all ${{ secrets.UPLOAD_TOKEN }}
-        env:
-          MAKEFLAGS: -j4
-      - name: Publish
-        if: matrix.os == 'macos'
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          npm run prebuild
+      - name: Upload artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: prebuilds-${{ matrix.os }}
+          path: prebuilds/
 
   prebuild-linux:
     strategy:
@@ -63,6 +56,33 @@ jobs:
       - name: Build
         run: |
           docker buildx build . -f Dockerfile.${{ matrix.os }} --output prebuilds
-      - name: Upload
+      - name: Upload artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: prebuilds-${{ matrix.os }}-${{ matrix.arch }}
+          path: prebuilds/
+
+  publish:
+    name: publish
+    needs: [ prebuild, prebuild-linux ]
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v6
+      - name: Use nodejs
+        uses: actions/setup-node@v6
+        with:
+          node-version: latest
+          registry-url: 'https://registry.npmjs.org'
+      - name: Dependencies
         run: |
-          npx -y @audc/prebuild --upload-all ${{ secrets.UPLOAD_TOKEN }}
+          npm ci --ignore-scripts
+      - name: Download prebuild artifacts
+        uses: actions/download-artifact@v8
+        with:
+          pattern: prebuilds-*
+          merge-multiple: true
+          path: .
+      - name: Publish
+        run: npm publish

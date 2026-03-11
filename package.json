@@ -17,17 +17,19 @@
         "n-api",
         "node-addon-api",
         "cmake-js",
+        "pkg-prebuilds",
         "S16_LE",
         "S32_LE",
         "pcm",
         "wav"
     ],
     "scripts": {
-        "install": "prebuild-install || cmake-js compile -p 4",
+        "install": "pkg-prebuilds-verify ./binding-options.js || cmake-js compile -p 4",
         "test": "nyc mocha test/*.test.js",
         "lint": "eslint",
         "build:dev": "cmake-js build --debug -p 4",
         "build": "cmake-js build -p 4",
+        "prebuild": "node ./scripts/pkg-prebuild.js",
         "build:tsc": "tsc",
         "prepack": "npx tsc",
         "pretest": "npx tsc",
@@ -36,10 +38,9 @@
         "clean": "cmake-js clean"
     },
     "dependencies": {
-        "bindings": "^1.5.0",
-        "cmake-js": "^8.0.0",
+        "cmake-js": "^7.3.1",
         "node-addon-api": "^8.6.0",
-        "prebuild-install": "^7.1.3"
+        "pkg-prebuilds": "^1.0.0"
     },
     "engines": {
         "node": ">=20.0.0"
@@ -52,7 +53,6 @@
     "devDependencies": {
         "@eslint/js": "^10.0.1",
         "@tsconfig/node22": "^22.0.5",
-        "@types/bindings": "^1.5.5",
         "@types/node": "^24.12.0",
         "eslint": "^10.0.3",
         "globals": "^17.4.0",
@@ -65,8 +65,11 @@
     "files": [
         "index.js",
         "index.d.ts",
+        "prebuilds/**",
+        "binding-options.js",
         "src/**",
-        "CMakeLists.txt"
+        "CMakeLists.txt",
+        "LICENSE"
     ],
     "nyc": {
         "extension": [

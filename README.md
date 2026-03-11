@@ -1,6 +1,6 @@
 # libsamplerate
 
-ABI stable native implementation of libsamplerate as a Transform stream. Built from the latest [libsamplerate](https://github.com/libsndfile/libsamplerate) code. Uses [N-API](https://nodejs.org/api/n-api.html), [node-addon-api](https://www.npmjs.com/package/node-addon-api) and [cmake-js](https://www.npmjs.com/package/cmake-js). This module has no external dependencies.
+ABI stable native implementation of libsamplerate as a Transform stream. Uses [N-API](https://nodejs.org/api/n-api.html), [node-addon-api](https://www.npmjs.com/package/node-addon-api), [cmake-js](https://www.npmjs.com/package/cmake-js) and [pkg-prebuilds](https://www.npmjs.com/package/pkg-prebuilds).
 
 Originally forked from [node-libsamplerate](https://www.npmjs.com/package/node-libsamplerate) package.
 
@@ -15,9 +15,13 @@ This module uses the "Full Api" detailed [here](http://www.mega-nerd.com/libsamp
 npm install libsamplerate --save
 ```
 
-Requires `cmake` and a valid toolchain to build.
+Prebuilt binaries are bundled in the package for supported platforms.
 
-For Windows, install the Visual C++ build tools and download cmake from [cmake.org](https://cmake.org/download/). Or install Visual Studio with full c++ support.
+If no matching prebuild is available, installation falls back to a source build and requires:
+
+- C/C++ toolchain and Python
+
+Source builds also require `cmake` and `git` (the build uses CMake FetchContent to download `libsamplerate`).
 
 ## Usage
 
